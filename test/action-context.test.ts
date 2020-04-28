@@ -18,6 +18,7 @@ describe("context", () => {
       "push-event-payload.json"
     );
     process.env.GITHUB_EVENT_NAME = "push";
+    process.env.GITHUB_SHA = "0000000000000000000000000000000000000001";
   });
 
   it("octokit.context.payload", () => {
@@ -32,5 +33,13 @@ describe("context", () => {
     const octokit = new Octokit();
     expect(octokit.context).toHaveProperty("eventName");
     expect(octokit.context.eventName).toEqual("push");
+  });
+
+  it("octokit.context.sha", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("sha");
+    expect(octokit.context.sha).toEqual(
+      "0000000000000000000000000000000000000001"
+    );
   });
 });
