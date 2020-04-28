@@ -56,4 +56,10 @@ describe("context", () => {
     expect(octokit.context).toHaveProperty("workflow");
     expect(octokit.context.workflow).toEqual("Test");
   });
+
+  it("octokit.context.action", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("action");
+    expect(octokit.context.action).toEqual("123");
+  });
 });
