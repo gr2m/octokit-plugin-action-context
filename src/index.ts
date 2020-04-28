@@ -17,6 +17,7 @@ export function actionContext(octokit: Octokit, options: Options) {
       sha: process.env.GITHUB_SHA,
       ref: process.env.GITHUB_REF,
       workflow: process.env.GITHUB_WORKFLOW,
+      action: process.env.GITHUB_ACTION,
     },
   };
 }
