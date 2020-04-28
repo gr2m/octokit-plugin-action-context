@@ -21,7 +21,8 @@ describe("context", () => {
     process.env.GITHUB_SHA = "0000000000000000000000000000000000000001";
     process.env.GITHUB_REF = "refs/tags/simple-tag";
     process.env.GITHUB_WORKFLOW = "Test";
-    process.env.GITHUB_ACTOR = "codercat";
+    process.env.GITHUB_ACTOR = "codertocat";
+    process.env.GITHUB_REPOSITORY = "Codertocat/Hello-World";
   });
 
   it("octokit.context.payload", () => {
@@ -67,6 +68,15 @@ describe("context", () => {
   it("octokit.context.actor", () => {
     const octokit = new Octokit();
     expect(octokit.context).toHaveProperty("actor");
-    expect(octokit.context.actor).toEqual("codercat");
+    expect(octokit.context.actor).toEqual("codertocat");
+  });
+
+  it("octokit.context.repo", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.repo).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+    });
   });
 });
