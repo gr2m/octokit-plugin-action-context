@@ -9,5 +9,11 @@ type Options = {
  * @param octokit Octokit instance
  * @param options Options passed to Octokit constructor
  */
-export function actionContext(octokit: Octokit, options: Options) {}
+export function actionContext(octokit: Octokit, options: Options) {
+  return {
+    context: {
+      payload: require(process.env.GITHUB_EVENT_PATH as string),
+    },
+  };
+}
 actionContext.VERSION = VERSION;
