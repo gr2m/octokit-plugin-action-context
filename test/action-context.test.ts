@@ -19,6 +19,7 @@ describe("context", () => {
     );
     process.env.GITHUB_EVENT_NAME = "push";
     process.env.GITHUB_SHA = "0000000000000000000000000000000000000001";
+    process.env.GITHUB_REF = "refs/tags/simple-tag";
   });
 
   it("octokit.context.payload", () => {
@@ -41,5 +42,11 @@ describe("context", () => {
     expect(octokit.context.sha).toEqual(
       "0000000000000000000000000000000000000001"
     );
+  });
+
+  it("octokit.context.ref", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("ref");
+    expect(octokit.context.ref).toEqual("refs/tags/simple-tag");
   });
 });
