@@ -37,11 +37,10 @@ const { actionContext } = require("octokit-plugin-action-context");
 </table>
 
 ```js
-const { Octokit } = require("@octokit/action");
-const { actionContext } = require("octokit-plugin-action-context");
 const OctokitWithContext = Octokit.plugin(actionContext);
-
-const octokit = new OctokitWithContext();
+const octokit = new OctokitWithContext({
+  auth: process.env.GITHUB_TOKEN,
+});
 
 const {
   payload,
@@ -55,6 +54,8 @@ const {
   issue,
 } = octokit.context;
 ```
+
+See [the output](https://github.com/gr2m/octokit-plugin-action-context/actions?query=workflow%3ADemo) of this repository's [demo workflow](https://github.com/gr2m/octokit-plugin-action-context/blob/master/.github/workflows/demo.yml)'s for a live example.
 
 ## Contributing
 
