@@ -79,4 +79,78 @@ describe("context", () => {
       repo: "Hello-World",
     });
   });
+
+  it("octokit.context.issue for 'push' event", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.issue).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+      number: undefined,
+    });
+  });
+
+  it("octokit.context.issue for 'issues' event", () => {
+    process.env.GITHUB_EVENT_PATH = resolve(
+      __dirname,
+      "fixtures",
+      "issues-event-payload.json"
+    );
+
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.issue).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+      number: 1,
+    });
+  });
+
+  it("octokit.context.issue for 'pull_request' event", () => {
+    process.env.GITHUB_EVENT_PATH = resolve(
+      __dirname,
+      "fixtures",
+      "pull-request-event-payload.json"
+    );
+
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.issue).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+      number: 2,
+    });
+  });
+
+  it("octokit.context.issue for 'issue_comment' event", () => {
+    process.env.GITHUB_EVENT_PATH = resolve(
+      __dirname,
+      "fixtures",
+      "issue-comment-event-payload.json"
+    );
+
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.issue).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+      number: 1,
+    });
+  });
+
+  it("octokit.context.issue for 'pull_request_review' event", () => {
+    process.env.GITHUB_EVENT_PATH = resolve(
+      __dirname,
+      "fixtures",
+      "pull-request-review-event-payload.json"
+    );
+
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("repo");
+    expect(octokit.context.issue).toStrictEqual({
+      owner: "Codertocat",
+      repo: "Hello-World",
+      number: 2,
+    });
+  });
 });
