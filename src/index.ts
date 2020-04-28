@@ -14,6 +14,7 @@ export function actionContext(octokit: Octokit, options: Options) {
     context: {
       payload: require(process.env.GITHUB_EVENT_PATH as string),
       eventName: process.env.GITHUB_EVENT_NAME,
+      sha: process.env.GITHUB_SHA,
     },
   };
 }
