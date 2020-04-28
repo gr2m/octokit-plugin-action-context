@@ -17,7 +17,7 @@ Browsers
 </th><td width=100%>
 
 `octokit-plugin-action-context` is not meant for browser usage.
-      
+
 </td></tr>
 <tr><th>
 
@@ -54,13 +54,12 @@ const {
   repo,
   issue,
 } = octokit.context;
-
 ```
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md)
-  
+
 ## License
 
 [MIT](LICENSE)
