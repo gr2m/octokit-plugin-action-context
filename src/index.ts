@@ -18,6 +18,7 @@ export function actionContext(octokit: Octokit, options: Options) {
       ref: process.env.GITHUB_REF,
       workflow: process.env.GITHUB_WORKFLOW,
       action: process.env.GITHUB_ACTION,
+      actor: process.env.GITHUB_ACTOR,
     },
   };
 }
