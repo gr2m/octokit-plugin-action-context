@@ -10,6 +10,7 @@ type Options = {
  * @param options Options passed to Octokit constructor
  */
 export function actionContext(octokit: Octokit, options: Options) {
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || "").split("/");
   return {
     context: {
       payload: require(process.env.GITHUB_EVENT_PATH as string),
@@ -19,6 +20,10 @@ export function actionContext(octokit: Octokit, options: Options) {
       workflow: process.env.GITHUB_WORKFLOW,
       action: process.env.GITHUB_ACTION,
       actor: process.env.GITHUB_ACTOR,
+      repo: {
+        owner,
+        repo,
+      },
     },
   };
 }
