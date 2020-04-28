@@ -17,6 +17,7 @@ describe("context", () => {
       "fixtures",
       "push-event-payload.json"
     );
+    process.env.GITHUB_EVENT_NAME = "push";
   });
 
   it("octokit.context.payload", () => {
@@ -25,5 +26,11 @@ describe("context", () => {
     expect(octokit.context.payload.repository.owner.login).toEqual(
       "Codertocat"
     );
+  });
+
+  it("octokit.context.eventName", () => {
+    const octokit = new Octokit();
+    expect(octokit.context).toHaveProperty("eventName");
+    expect(octokit.context.eventName).toEqual("push");
   });
 });
