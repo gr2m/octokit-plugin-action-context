@@ -1,16 +1,14 @@
 import { VERSION } from "./version";
 
-type Octokit = any;
-type Options = {
-  [option: string]: any;
-};
-
 /**
  * @param octokit Octokit instance
  * @param options Options passed to Octokit constructor
  */
-export function actionContext(octokit: Octokit, options: Options) {
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || "").split("/");
+export function actionContext() {
+  const payload = require(process.env.GITHUB_EVENT_PATH as string);
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY as string).split("/");
+  const number = (payload.issue || payload.pull_request || payload).number;
+
   return {
     context: {
       payload: require(process.env.GITHUB_EVENT_PATH as string),
@@ -23,6 +21,11 @@ export function actionContext(octokit: Octokit, options: Options) {
       repo: {
         owner,
         repo,
+      },
+      issue: {
+        owner,
+        repo,
+        number,
       },
     },
   };
