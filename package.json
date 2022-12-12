@@ -29,7 +29,7 @@
     "@types/node": "^13.13.4",
     "jest": "^25.5.0",
     "prettier": "^2.0.5",
-    "semantic-release": "^17.0.7",
+    "semantic-release": "^19.0.5",
     "semantic-release-plugin-update-version-in-files": "^1.0.0",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
