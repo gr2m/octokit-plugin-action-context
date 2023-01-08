@@ -43,17 +43,8 @@ const OctokitWithContext = Octokit.plugin(actionContext);
 
 const octokit = new OctokitWithContext();
 
-const {
-  payload,
-  eventName,
-  sha,
-  ref,
-  workflow,
-  action,
-  actor,
-  repo,
-  issue,
-} = octokit.context;
+const { payload, eventName, sha, ref, workflow, action, actor, repo, issue } =
+  octokit.context;
 ```
 
 ## Contributing
