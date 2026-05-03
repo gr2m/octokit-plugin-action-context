@@ -54,6 +54,14 @@
       ]
     ]
   },
+  "overrides": {
+    "picomatch": "^4.0.4",
+    "tmp": "^0.2.4",
+    "got": "^12.1.0",
+    "yargs-parser": "^13.1.2",
+    "rollup": "^2.80.0",
+    "npm": "^11.13.0"
+  },
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
